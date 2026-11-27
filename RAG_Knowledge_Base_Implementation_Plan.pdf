@@ -1,0 +1,1074 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 5925 >>
+stream
+
+q
+0.08 0.18 0.36 rg
+44 721.89 507.28 68 re
+f
+Q
+BT
+/F2 18.5 Tf
+1 1 1 rg
+60 767.89 Td
+(RAG KNOWLEDGE BASE) Tj
+ET
+BT
+/F1 9.2 Tf
+0.8 0.88 0.98 rg
+60 744.89 Td
+(Portfolio Implementation Plan | Next.js, Google Gemini & Supabase pgvector) Tj
+ET
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 702.89 Td
+(1. PROJECT GOAL & CORE ARCHITECTURE) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 699.89 m 551.28 699.89 l S
+Q
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 691.89 Td
+(The primary objective of this project is to develop and deploy a live, production-ready Retrieval-Augmented) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 679.562 Td
+(Generation \(RAG\) web application tailored for deep learning and portfolio showcase. Users can upload documents) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 667.234 Td
+(\(PDF and TXT\), have them chunked and vectorized, and ask questions with answers strictly grounded in the) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 654.9060000000001 Td
+(uploaded content, complete with source citations \(document title and page numbers\).) Tj
+ET
+q
+0.975 0.985 1 rg
+0.84 0.88 0.95 RG
+0.8 w
+44 529.5780000000001 507.28 109 re
+B
+Q
+BT
+/F2 9.5 Tf
+0.1 0.24 0.52 rg
+54 626.5780000000001 Td
+(Selected Technology Stack) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 614.5780000000001 Td
+(Frontend Framework:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 614.5780000000001 Td
+(Next.js 14/15 \(App Router, React, TypeScript, Tailwind CSS\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 600.0780000000001 Td
+(LLM & Reasoning:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 600.0780000000001 Td
+(Google Gemini 1.5 Flash \(Fast inference, generous free tier, 1M context\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 585.5780000000001 Td
+(Embedding Model:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 585.5780000000001 Td
+(Google text-embedding-004 \(768 dimensions, high semantic fidelity\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 571.0780000000001 Td
+(Vector DB & Storage:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 571.0780000000001 Td
+(Supabase PostgreSQL + pgvector extension + Supabase Storage) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 556.5780000000001 Td
+(Document Parser:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 556.5780000000001 Td
+(pdf-parse / unpdf \(Page-aware extraction for accurate citations\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 542.0780000000001 Td
+(Live Deployment:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 542.0780000000001 Td
+(Vercel \(Web Application\) + Supabase Cloud \(Database & Storage\)) Tj
+ET
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 517.5780000000001 Td
+(2. THE RAG PIPELINE WORKFLOW) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 514.5780000000001 m 551.28 514.5780000000001 l S
+Q
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 506.5780000000001 Td
+(The RAG architecture eliminates LLM hallucinations by restricting answers to verifiable excerpts retrieved) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 494.2500000000001 Td
+(from the user's uploaded documents. The flow operates in two distinct phases:) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 477.92200000000014 Td
+(A. Ingestion Pipeline \(Upload -> Parse -> Chunk -> Embed -> Store\):) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 464.09400000000016 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 461.59400000000016 Td
+(1. Document Upload: User uploads a PDF or TXT file through the UI \(with file-type and size validation\).) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 449.9780000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 447.4780000000002 Td
+(2. Text & Page Extraction: Document text is parsed while retaining page number metadata for citations.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 435.8620000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 433.3620000000002 Td
+(3. Recursive Chunking: Text is split into segments \(~500 tokens\) with 100-token overlap to maintain contextual) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 421.7460000000002 Td
+(continuity.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 410.1300000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 407.6300000000002 Td
+(4. Vector Embeddings: Each chunk is converted into a 768-dimensional semantic vector via Gemini) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 396.01400000000024 Td
+(text-embedding-004.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 384.39800000000025 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 381.89800000000025 Td
+(5. Database Persistence: Chunks, page numbers, metadata, and vectors are saved directly in Supabase pgvector.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 365.78200000000027 Td
+(B. Retrieval & Generation Pipeline \(Query -> Search -> Augment -> Ground\):) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 351.9540000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 349.4540000000003 Td
+(1. Query Vectorization: The user's question is embedded into the same 768-dim vector space.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 337.8380000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 335.3380000000003 Td
+(2. Cosine Similarity Match: Supabase executes vector similarity search \(<=> operator\) to retrieve Top-K relevant) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 323.7220000000003 Td
+(chunks.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 312.10600000000034 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 309.60600000000034 Td
+(3. Prompt Augmentation: The system constructs a grounded prompt enclosing the retrieved context chunks and) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 297.99000000000035 Td
+(strict boundary instructions.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 286.37400000000036 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 283.87400000000036 Td
+(4. Grounded Generation: Gemini 1.5 Flash produces a citation-annotated response, explicitly admitting if an) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 272.2580000000004 Td
+(answer cannot be found in the context.) Tj
+ET
+q
+0.88 0.9 0.94 RG
+0.75 w
+44 34 m 551.28 34 l S
+Q
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+44 23 Td
+(Google Gemini API + Supabase pgvector + Next.js Portfolio Project) Tj
+ET
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+506.28 23 Td
+(Page 1 of 3) Tj
+ET
+
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 6 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+8 0 obj
+<< /Length 7452 >>
+stream
+BT
+/F1 7.8 Tf
+0.48 0.52 0.60 rg
+44 806 Td
+(RAG Knowledge Base  Portfolio Implementation Plan) Tj
+ET
+q
+0.88 0.9 0.94 RG
+0.75 w
+44 799 m 551.28 799 l S
+Q
+
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 772.89 Td
+(3. STREAMLINED DATABASE DESIGN \(SUPABASE PGVECTOR\)) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 769.89 m 551.28 769.89 l S
+Q
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 761.89 Td
+(To keep the project clean, maintainable, and focused on core AI/RAG principles without enterprise boilerplate,) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 749.562 Td
+(the schema is simplified to two primary entities:) Tj
+ET
+q
+0.975 0.985 1 rg
+0.84 0.88 0.95 RG
+0.8 w
+44 624.234 507.28 109 re
+B
+Q
+BT
+/F2 9.5 Tf
+0.1 0.24 0.52 rg
+54 721.234 Td
+(Table: documents) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 709.234 Td
+(id:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 709.234 Td
+(UUID \(Primary Key, default gen_random_uuid\(\)\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 694.734 Td
+(name:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 694.734 Td
+(TEXT \(Original filename, e.g. annual_report.pdf\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 680.234 Td
+(file_path:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 680.234 Td
+(TEXT \(Path in Supabase storage bucket\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 665.734 Td
+(file_size:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 665.734 Td
+(INTEGER \(File size in bytes\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 651.234 Td
+(status:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 651.234 Td
+(TEXT \("uploaded" | "processing" | "ready" | "failed"\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 636.734 Td
+(created_at:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 636.734 Td
+(TIMESTAMPTZ \(Record creation timestamp\)) Tj
+ET
+q
+0.975 0.985 1 rg
+0.84 0.88 0.95 RG
+0.8 w
+44 508.23400000000004 507.28 109 re
+B
+Q
+BT
+/F2 9.5 Tf
+0.1 0.24 0.52 rg
+54 605.234 Td
+(Table: document_chunks) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 593.234 Td
+(id:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 593.234 Td
+(UUID \(Primary Key\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 578.734 Td
+(document_id:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 578.734 Td
+(UUID \(Foreign key references documents\(id\) ON DELETE CASCADE\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 564.234 Td
+(content:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 564.234 Td
+(TEXT \(The raw text of the chunk\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 549.734 Td
+(page_number:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 549.734 Td
+(INTEGER \(Source page number from the PDF\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 535.234 Td
+(chunk_index:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 535.234 Td
+(INTEGER \(Sequential ordering within the document\)) Tj
+ET
+BT
+/F2 8.5 Tf
+0.25 0.3 0.38 rg
+56 520.734 Td
+(embedding:) Tj
+ET
+BT
+/F1 8.5 Tf
+0.15 0.18 0.22 rg
+168 520.734 Td
+(VECTOR\(768\) \(pgvector column storing Gemini 768-dim vector\)) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 501.23400000000004 Td
+(Vector Matching SQL Function \(match_document_chunks\):) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 484.90600000000006 Td
+(A stored Postgres function performs vector cosine distance calculations: 1 - \(embedding <=> query_embedding\).) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 472.5780000000001 Td
+(It filters by similarity threshold and returns top_k matching chunks with document metadata in a single fast) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 460.2500000000001 Td
+(network round-trip.) Tj
+ET
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 438.92200000000014 Td
+(4. 4-PHASE IMPLEMENTATION SCHEDULE) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 435.92200000000014 m 551.28 435.92200000000014 l S
+Q
+BT
+/F2 9.2 Tf
+0.15 0.35 0.7 rg
+44 427.92200000000014 Td
+(Phase 1: Project Scaffolding & Ingestion Pipeline) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 414.09400000000016 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 411.59400000000016 Td
+(Initialize Next.js 14/15 App Router with TypeScript, Tailwind CSS, and shadcn/ui components.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 399.9780000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 397.4780000000002 Td
+(Configure Supabase client, initialize the pgvector extension, and execute schema migrations.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 385.8620000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 383.3620000000002 Td
+(Build drag-and-drop file upload UI with real-time file size/type validation.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 371.7460000000002 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 369.2460000000002 Td
+(Implement server-side PDF extraction with page indexing, text chunker with overlap, and Gemini embedding) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 357.6300000000002 Td
+(generation.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.35 0.7 rg
+44 343.51400000000024 Td
+(Phase 2: Semantic Retrieval & Grounded Generation) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 329.68600000000026 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 327.18600000000026 Td
+(Create SQL RPC function match_document_chunks for sub-second cosine similarity retrieval.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 315.5700000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 313.0700000000003 Td
+(Build /api/chat route: embed query -> fetch top-K relevant chunks -> format prompt context.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 301.4540000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 298.9540000000003 Td
+(Enforce strict hallucination prevention: instruction to return "I cannot find this in the documents" when) Tj
+ET
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 287.3380000000003 Td
+(similarity is low.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 275.7220000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 273.2220000000003 Td
+(Format LLM responses with inline citations mapped directly to source chunks and page numbers.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.35 0.7 rg
+44 259.10600000000034 Td
+(Phase 3: Interactive Portfolio User Interface) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 245.27800000000033 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 242.77800000000033 Td
+(Split-screen dashboard: Document library & upload manager on left; interactive chat workspace on right.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 231.16200000000032 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 228.66200000000032 Td
+(Citation inspection: Clicking citation tags reveals the source document, page number, and chunk text.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 217.0460000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 214.5460000000003 Td
+(Empty states, loading spinners, document deletion, and error boundaries for a smooth UX.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.35 0.7 rg
+44 200.4300000000003 Td
+(Phase 4: Live Deployment, Testing & Portfolio Presentation) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 186.6020000000003 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 184.1020000000003 Td
+(Deploy database and storage on Supabase Cloud; deploy web application on Vercel.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 172.48600000000027 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 169.98600000000027 Td
+(Conduct edge-case testing: multi-page PDFs, queries with no matching content, corrupted files.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 158.37000000000026 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 155.87000000000026 Td
+(Author a stellar GitHub README with architecture diagrams, RAG concepts explained, and live demo link.) Tj
+ET
+q
+0.88 0.9 0.94 RG
+0.75 w
+44 34 m 551.28 34 l S
+Q
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+44 23 Td
+(Google Gemini API + Supabase pgvector + Next.js Portfolio Project) Tj
+ET
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+506.28 23 Td
+(Page 2 of 3) Tj
+ET
+
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 8 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+10 0 obj
+<< /Length 4768 >>
+stream
+BT
+/F1 7.8 Tf
+0.48 0.52 0.60 rg
+44 806 Td
+(RAG Knowledge Base  Portfolio Implementation Plan) Tj
+ET
+q
+0.88 0.9 0.94 RG
+0.75 w
+44 799 m 551.28 799 l S
+Q
+
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 772.89 Td
+(5. ESSENTIAL RAG CONCEPTS YOU WILL MASTER \(INTERVIEW READY\)) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 769.89 m 551.28 769.89 l S
+Q
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 761.89 Td
+(1. Chunk Size vs. Overlap Trade-offs:) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 745.562 Td
+(Chunks that are too small lack semantic context; chunks that are too large dilute vector specificity. Overlap) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 733.234 Td
+(\(typically 10-20%\) ensures that sentences occurring across split boundaries do not lose contextual meaning) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 720.9060000000001 Td
+(during semantic indexing.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 704.5780000000001 Td
+(2. Cosine Distance vs. Euclidean Distance:) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 688.2500000000001 Td
+(Cosine distance measures the angle between two vectors rather than their magnitude. For text embeddings \(where) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 675.9220000000001 Td
+(document lengths vary\), cosine distance \(<=> in pgvector\) represents true semantic similarity independent of) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 663.5940000000002 Td
+(text length.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 647.2660000000002 Td
+(3. Prompt Engineering for Grounded Answers:) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 630.9380000000002 Td
+(How to structure system prompts using markdown/XML context tags \(<context>...</context>\) and explicit) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 618.6100000000002 Td
+(negative-constraint prompting to guarantee zero-hallucination and enforce precise citations.) Tj
+ET
+BT
+/F2 9.2 Tf
+0.15 0.25 0.45 rg
+44 602.2820000000003 Td
+(4. pgvector vs. Standalone Vector DBs:) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 585.9540000000003 Td
+(Why pgvector is dominating modern architectures: avoids maintaining two separate database systems, allows) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 573.6260000000003 Td
+(combining relational queries \(document ownership, timestamps\) with vector filters in a single atomic SQL) Tj
+ET
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 561.2980000000003 Td
+(transaction.) Tj
+ET
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 539.9700000000004 Td
+(6. VERIFICATION & COMPLETION CRITERIA) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 536.9700000000004 m 551.28 536.9700000000004 l S
+Q
+q
+0.15 0.42 0.82 rg
+46.5 531.4700000000004 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 528.9700000000004 Td
+(Live URL: The web application is accessible live on Vercel without requiring local development servers.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 517.3540000000004 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 514.8540000000004 Td
+(End-to-End Workflow: Any user can upload a sample PDF, wait for status "ready", and ask questions.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 503.2380000000004 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 500.7380000000004 Td
+(Citation Accuracy: Every factual statement references the specific document and page number.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 489.1220000000004 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 486.6220000000004 Td
+(Grounded Fallback: Irrelevant questions yield an honest "Not found in documents" message without hallucinating.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 475.0060000000004 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 472.5060000000004 Td
+(Portfolio Quality: Clean TypeScript codebase, proper error handling, modern responsive UI, and detailed README.) Tj
+ET
+BT
+/F2 10 Tf
+0.1 0.32 0.7 rg
+44 453.39000000000044 Td
+(7. PREREQUISITES & NEXT STEPS) Tj
+ET
+q
+0.82 0.86 0.92 RG
+0.8 w
+44 450.39000000000044 m 551.28 450.39000000000044 l S
+Q
+BT
+/F1 9.2 Tf
+0.2 0.23 0.28 rg
+44 442.39000000000044 Td
+(To commence implementation, we will need:) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 428.56200000000047 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 426.06200000000047 Td
+(1. Google Gemini API Key: From Google AI Studio \(free tier gives 15 RPM, which is plenty\).) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 414.4460000000005 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 411.9460000000005 Td
+(2. Supabase Account & Project: Free project providing PostgreSQL, pgvector extension, and Storage bucket.) Tj
+ET
+q
+0.15 0.42 0.82 rg
+46.5 400.3300000000005 3.2 3.2 re
+f
+Q
+BT
+/F1 8.8 Tf
+0.2 0.23 0.28 rg
+56 397.8300000000005 Td
+(3. Node.js & Next.js: Clean initialized repository ready for component building.) Tj
+ET
+q
+0.88 0.9 0.94 RG
+0.75 w
+44 34 m 551.28 34 l S
+Q
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+44 23 Td
+(Google Gemini API + Supabase pgvector + Next.js Portfolio Project) Tj
+ET
+BT
+/F1 7.6 Tf
+0.45 0.5 0.58 rg
+506.28 23 Td
+(Page 3 of 3) Tj
+ET
+
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Contents 10 0 R /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> >>
+endobj
+xref
+0 12
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000128 00000 n 
+0000000225 00000 n 
+0000000327 00000 n 
+0000000432 00000 n 
+0000006409 00000 n 
+0000006561 00000 n 
+0000014065 00000 n 
+0000014217 00000 n 
+0000019038 00000 n 
+trailer
+<< /Size 12 /Root 1 0 R >>
+startxref
+19192
+%%EOF
