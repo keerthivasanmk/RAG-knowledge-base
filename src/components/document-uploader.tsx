@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { UploadCloud, FileText, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { UploadCloud, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 interface DocumentUploaderProps {
   onUploadSuccess: () => void;
@@ -86,10 +86,10 @@ export function DocumentUploader({ onUploadSuccess }: DocumentUploaderProps) {
         onDragLeave={onDragLeave}
         onDrop={onDrop}
         onClick={() => !isUploading && fileInputRef.current?.click()}
-        className={`border-2 border-dashed rounded-xl p-6 text-center cursor-pointer transition-all duration-200 ${
+        className={`border border-dashed rounded-xl py-7 px-4 text-center cursor-pointer transition-all duration-200 ${
           isDragging
-            ? 'border-blue-500 bg-blue-50/50 dark:bg-blue-950/20'
-            : 'border-slate-200 dark:border-slate-800 hover:border-slate-400 dark:hover:border-slate-700 bg-white dark:bg-slate-900/50'
+            ? 'border-blue-500 bg-blue-50/60 dark:bg-blue-950/20'
+            : 'border-slate-200 dark:border-slate-800 hover:border-blue-400 dark:hover:border-blue-700 bg-white dark:bg-slate-900/50'
         } ${isUploading ? 'opacity-70 pointer-events-none' : ''}`}
       >
         <input
@@ -100,21 +100,24 @@ export function DocumentUploader({ onUploadSuccess }: DocumentUploaderProps) {
           className="hidden"
         />
 
-        <div className="flex flex-col items-center justify-center space-y-3">
-          <div className="p-3 bg-blue-50 dark:bg-blue-950/50 rounded-full text-blue-600 dark:text-blue-400">
+        <div className="flex flex-col items-center justify-center space-y-2.5">
+          <div className="w-11 h-11 bg-blue-50 dark:bg-blue-950/60 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-400">
             {isUploading ? (
-              <Loader2 className="w-6 h-6 animate-spin" />
+              <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
-              <UploadCloud className="w-6 h-6" />
+              <UploadCloud className="w-5 h-5" />
             )}
           </div>
 
           <div>
-            <p className="text-sm font-medium text-slate-800 dark:text-slate-200">
-              {isUploading ? 'Processing & embedding document...' : 'Click to upload or drag & drop'}
+            <p className="text-xs font-semibold text-slate-800 dark:text-slate-200">
+              {isUploading ? 'Processing & embedding document...' : 'Upload or drag & drop files'}
             </p>
-            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-              PDF or TXT up to 10MB (automatically chunked & vectorized)
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
+              PDF or TXT up to 10MB
+            </p>
+            <p className="text-[10px] text-slate-400 dark:text-slate-500">
+              (automatically chunked &amp; vectorized)
             </p>
           </div>
         </div>
@@ -122,14 +125,14 @@ export function DocumentUploader({ onUploadSuccess }: DocumentUploaderProps) {
 
       {/* Status alerts */}
       {errorMessage && (
-        <div className="mt-3 flex items-start space-x-2 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 rounded-lg p-2.5">
+        <div className="mt-2.5 flex items-start space-x-2 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900/40 rounded-lg p-2.5">
           <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{errorMessage}</span>
         </div>
       )}
 
       {successMessage && (
-        <div className="mt-3 flex items-start space-x-2 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40 rounded-lg p-2.5">
+        <div className="mt-2.5 flex items-start space-x-2 text-xs text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-900/40 rounded-lg p-2.5">
           <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" />
           <span>{successMessage}</span>
         </div>

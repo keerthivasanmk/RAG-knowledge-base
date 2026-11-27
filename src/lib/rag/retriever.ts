@@ -16,6 +16,11 @@ export interface SearchOptions {
   filterDocumentId?: string | null;
 }
 
+export interface HistoryMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
 /**
  * Executes a semantic vector search across document chunks using pgvector cosine distance.
  */
@@ -25,7 +30,7 @@ export async function searchSimilarChunks(
 ): Promise<RetrievedChunk[]> {
   const supabase = getServiceSupabase();
 
-  // 1. Vectorize query using Gemini text-embedding-004
+  // 1. Vectorize query using Gemini text-embedding
   const queryEmbedding = await createQueryEmbedding(query);
 
   const matchThreshold = options.threshold ?? 0.35;
@@ -56,11 +61,13 @@ export async function searchSimilarChunks(
 }
 
 /**
- * Builds a strictly grounded prompt with clear negative constraints and citation requirements.
+ * Builds a strictly grounded prompt with clear negative constraints, citation requirements,
+ * and conversational context for follow-up questions.
  */
 export function buildGroundedPrompt(
   question: string,
-  retrievedChunks: RetrievedChunk[]
+  retrievedChunks: RetrievedChunk[],
+  history: HistoryMessage[] = []
 ): string {
   if (retrievedChunks.length === 0) {
     return `The user asked: "${question}"\n\nNo relevant document excerpts were found in the knowledge base. Respond politely stating that the uploaded documents do not contain information related to this question.`;
@@ -72,14 +79,24 @@ export function buildGroundedPrompt(
     })
     .join('\n\n');
 
+  // Format the last few turns of conversation history for follow-up grounding
+  const recentHistory = history.slice(-4);
+  let historySection = '';
+  if (recentHistory.length > 0) {
+    historySection = `\n<recent_conversation_history>\n${recentHistory
+      .map((m) => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
+      .join('\n')}\n</recent_conversation_history>\n`;
+  }
+
   return `You are a knowledgeable, truthful assistant for a Document Knowledge Base.
 Answer the user's question using ONLY the provided excerpts below.
-
+${historySection}
 CRITICAL INSTRUCTIONS:
 1. Strict Grounding: Every statement in your answer must be supported by the excerpts. Do NOT bring in external knowledge, make assumptions, or hallucinate.
 2. Citations: Whenever you state a claim or fact, cite the source using the exact format: [Doc: <document_name>, Page <page_number>].
-3. Negative Constraint: If the provided excerpts do not contain sufficient evidence to answer the question, state: "I cannot find this information in the uploaded documents."
-4. Tone & Style: Be concise, direct, and factual. Use bullet points or short paragraphs where appropriate.
+3. Conversational Context: Use recent conversation history only to understand what previous questions or pronouns (e.g. "it", "they", "that policy") refer to, but ground every answer in the excerpts.
+4. Negative Constraint: If the provided excerpts do not contain sufficient evidence to answer the question, state: "I cannot find this information in the uploaded documents."
+5. Tone & Style: Be concise, direct, and factual. Use bullet points or short paragraphs where appropriate.
 
 <context>
 ${contextFormatted}

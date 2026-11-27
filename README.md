@@ -8,6 +8,7 @@ Upload your documents (PDF or TXT), ask questions in natural language, and recei
 
 ## ⚡ Key Highlights & Architecture
 
+- **Conversational Memory & Chat History:** Persists chat sessions and message threads in Supabase. Supports follow-up questions (e.g. *"Can you elaborate on that policy?"* or *"How many days does it allow?"*) with automatic coreference resolution across conversation turns.
 - **True Page-Aware Citations:** Parses PDFs by page boundary, allowing the LLM to cite the exact source document and page number (e.g. `[Doc: quarterly_report.pdf, Page 4]`).
 - **Citation Inspector:** Click any citation badge in the chat UI to inspect the exact vector chunk, cosine match percentage, and raw text retrieved from PostgreSQL.
 - **Strict Grounding Guardrails:** System prompts prevent hallucinations. If the context does not contain the answer, the model explicitly outputs *"I cannot find this information in the uploaded documents."*
